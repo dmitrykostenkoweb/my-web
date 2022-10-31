@@ -1,50 +1,60 @@
 <template>
-  <v-app-bar absolute>
-    <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
+  <v-app-bar elevation="0" color="transparent" absolute class="card-header">
+    <v-tabs v-model="tab" elevation="0" color="transparent">
+      <v-tab :value="TabValues.ABOUT"
+        >About
+        <img
+          v-show="tab !== TabValues.ABOUT"
+          :src="explorer"
+          alt="explorer"
+          class="card-header__icon"
+        />
+      </v-tab>
+      <v-tab :value="TabValues.CONTACT"
+        >Contact
+        <img
+          v-show="tab !== TabValues.CONTACT"
+          :src="chat"
+          alt="chat"
+          class="card-header__icon"
+        />
+      </v-tab>
+    </v-tabs>
 
-    <v-toolbar-title>Title</v-toolbar-title>
+    <v-spacer />
 
-    <v-spacer></v-spacer>
-
-    <v-btn icon>
-      <v-icon>mdi-magnify</v-icon>
-    </v-btn>
-
-    <v-btn icon>
-      <v-icon>mdi-heart</v-icon>
-    </v-btn>
-
-    <v-btn icon>
-      <v-icon>mdi-dots-vertical</v-icon>
-    </v-btn>
+    <toggle-theme-button />
   </v-app-bar>
-
-  <v-navigation-drawer v-model="drawer" absolute temporary>
-    <v-list nav dense>
-      <v-list-item-group
-        v-model="group"
-        active-class="deep-purple--text text--accent-4"
-      >
-        <v-list-item>
-          <v-list-item-icon>
-            <v-icon>mdi-home</v-icon>
-          </v-list-item-icon>
-          <v-list-item-title>Home</v-list-item-title>
-        </v-list-item>
-
-        <v-list-item>
-          <v-list-item-icon>
-            <v-icon>mdi-account</v-icon>
-          </v-list-item-icon>
-          <v-list-item-title>Account</v-list-item-title>
-        </v-list-item>
-      </v-list-item-group>
-    </v-list>
-  </v-navigation-drawer>
 </template>
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, watch } from "vue";
 
-const drawer = ref<boolean>(false);
-const group = ref<any>(null);
+import ToggleThemeButton from "./ToggleThemeButton";
+
+import { TabValues } from "./CardHeader.model";
+
+import chat from "@/assets/images/chat.png";
+import explorer from "@/assets/images/explorer.png";
+
+interface HeaderEmits {
+  (event: "tab", value: TabValues): void;
+}
+
+const emit = defineEmits<HeaderEmits>();
+
+const tab = ref<TabValues>(TabValues.ABOUT);
+
+watch(
+  (): TabValues => tab.value,
+
+  (value): void => emit("tab", value)
+);
 </script>
+<style lang="scss" scoped>
+.card-header {
+  &__icon {
+    width: 40px;
+    filter: drop-shadow(2px 2px 8px black);
+  }
+}
+</style>

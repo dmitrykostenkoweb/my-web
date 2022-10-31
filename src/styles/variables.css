@@ -1,6 +1,9 @@
 :root {
 
+    --base-space: 16px;
+    --base-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     --main-card-z-index: 100;
+    --popup-z-index: 200;
     --size: 1000px;
     --blue: #180a89;
     --violet: #6633cc;
