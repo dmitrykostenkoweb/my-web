@@ -1,6 +1,6 @@
 <template>
   <kinesis-container class="main-card__wrapper">
-    <kinesis-element :strength="3" type="depth">
+    <kinesis-element :strength="2" type="depth">
       <v-card elevation="6" class="main-card">
         <card-header @tab="setSelectedTab" />
         <div class="main-card__slot">
@@ -11,6 +11,8 @@
   </kinesis-container>
 </template>
 <script setup lang="ts">
+import { computed } from "vue";
+import { useDisplay } from "vuetify";
 import { KinesisContainer, KinesisElement } from "vue-kinesis";
 import CardHeader from "@/components/CardHeader/CardHeader.vue";
 import { TabValues } from "@/components/CardHeader/CardHeader.model";
@@ -20,13 +22,47 @@ interface HeaderEmits {
 }
 
 const emit = defineEmits<HeaderEmits>();
+const { name } = useDisplay();
 
 const setSelectedTab = (payload: TabValues): void => emit("tab", payload);
+
+const generateResponsiveStyle = computed((): { size: number } => {
+  switch (name.value) {
+    case "xs":
+      return {
+        size: 95,
+      };
+    case "sm":
+      return {
+        size: 90,
+      };
+    case "md":
+      return {
+        size: 85,
+      };
+    case "lg":
+      return {
+        size: 80,
+      };
+    case "xl":
+      return {
+        size: 70,
+      };
+    case "xxl":
+      return {
+        size: 70,
+      };
+  }
+});
+
+const generateWidth = computed(
+  (): string => `${generateResponsiveStyle.value.size}vw`
+);
 </script>
 <style lang="scss" scoped>
 .main-card {
-  width: 90vw;
-  height: 90vh;
+  width: v-bind(generateWidth);
+  min-height: 800px;
 
   background: #ffffff33;
   border-radius: 16px;

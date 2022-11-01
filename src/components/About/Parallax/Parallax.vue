@@ -52,7 +52,7 @@ import vue from "@/assets/images/vue.png";
 import vscode from "@/assets/images/vscode.png";
 import laptop from "@/assets/images/laptop.png";
 
-import type { RandomPosition, ParallaxData } from "./developerImg.model";
+import type { RandomPosition, ParallaxData } from "./parallax.model";
 
 const wrapper = ref<HTMLDivElement>();
 
@@ -156,34 +156,30 @@ const generateRandomPosition = (): RandomPosition => {
 };
 
 const generateRandomImageWidth = (): string => {
-  const minWidth = 2; //vw
-  const maxWidth = 3; //vw
+  const minWidth = 20; //px
+  const maxWidth = 50; //px
   return `${Math.floor(
     Math.random() * (maxWidth - minWidth + 1) + minWidth
-  )}vw`;
+  )}px`;
 };
 const generateRandomStrength = (): number => {
   const minValue = 2;
-  const maxValue = 10;
+  const maxValue = 20;
   return Math.floor(Math.random() * (maxValue - minValue + 1) + minValue);
 };
 </script>
 <style lang="scss" scoped>
 .developer-wrapper {
-  max-width: 500px;
-  min-width: 200px;
-
-  height: 500px;
+  width: 400px;
+  height: 400px;
 }
 
 .flying-wrapper {
+  max-width: 400px;
+  min-width: 280px;
+  height: 400px;
+
   position: relative;
-  border: 1px solid red;
-
-  border-radius: 50%;
-
-  width: 100%;
-  height: 100%;
 
   display: flex;
   align-items: flex-end;
@@ -196,10 +192,15 @@ const generateRandomStrength = (): number => {
 }
 
 .flying-dev {
+  max-width: 300px;
+  min-width: 280px;
+
   filter: drop-shadow(3px 0px 9px rgba(0, 0, 0, 0.6));
 
   img {
-    width: 300px;
+    max-width: 300px;
+    width: 30vw;
+    min-width: 260px;
   }
 }
 </style>

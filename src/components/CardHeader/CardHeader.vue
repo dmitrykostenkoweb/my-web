@@ -1,44 +1,44 @@
 <template>
-  <v-app-bar elevation="0" color="transparent" absolute class="card-header">
+  <v-app-bar elevation="0" color="transparent" absolute>
     <v-tabs v-model="tab" elevation="0" color="transparent">
-      <v-tab :value="TabValues.ABOUT"
+      <v-tab
+        :style="{
+          fontSize: changeFontSize ? '16px' : '12px',
+          padding: changeFontSize ? '' : '0',
+        }"
+        :value="TabValues.ABOUT"
         >About
-        <img
-          v-show="tab !== TabValues.ABOUT"
-          :src="explorer"
-          alt="explorer"
-          class="card-header__icon"
-        />
       </v-tab>
-      <v-tab :value="TabValues.CONTACT"
+      <v-tab
+        :value="TabValues.CONTACT"
+        :style="{
+          fontSize: changeFontSize ? '16px' : '12px',
+          padding: changeFontSize ? '' : '0',
+        }"
         >Contact
-        <img
-          v-show="tab !== TabValues.CONTACT"
-          :src="chat"
-          alt="chat"
-          class="card-header__icon"
-        />
       </v-tab>
     </v-tabs>
 
     <v-spacer />
 
+    <social-links />
     <toggle-theme-button />
   </v-app-bar>
 </template>
 <script setup lang="ts">
-import { ref, watch } from "vue";
-
+import { computed, ref, watch } from "vue";
+import { useDisplay } from "vuetify";
+import SocialLinks from "./SocialLinks";
 import ToggleThemeButton from "./ToggleThemeButton";
-
 import { TabValues } from "./CardHeader.model";
-
-import chat from "@/assets/images/chat.png";
-import explorer from "@/assets/images/explorer.png";
 
 interface HeaderEmits {
   (event: "tab", value: TabValues): void;
 }
+
+const { xs } = useDisplay();
+
+const changeFontSize = computed((): boolean => !xs.value);
 
 const emit = defineEmits<HeaderEmits>();
 
@@ -50,11 +50,3 @@ watch(
   (value): void => emit("tab", value)
 );
 </script>
-<style lang="scss" scoped>
-.card-header {
-  &__icon {
-    width: 40px;
-    filter: drop-shadow(2px 2px 8px black);
-  }
-}
-</style>
