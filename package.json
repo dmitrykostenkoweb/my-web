@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emailjs/browser": "^3.9.0",
     "@mdi/font": "5.9.55",
     "normalize.css": "^8.0.1",
     "prettier": "^2.7.1",
