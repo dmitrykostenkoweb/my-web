@@ -5,7 +5,7 @@
         class="flying-item"
         v-for="(item, idx) in prepareParallaxData"
         :strength="item.strength"
-        type="depth_inv"
+        type="depth"
         :key="idx"
         :style="{
           top: item.positionTop,
@@ -33,6 +33,7 @@ import { computed, ref } from "vue";
 import AnimationItem from "@/components/common/AnimationItem.vue";
 
 import developer from "@/assets/developer.png";
+
 import angleBrackets from "@/assets/images/angleBrackets.png";
 import basketball from "@/assets/images/basketball.png";
 import camera from "@/assets/images/camera.png";
@@ -41,16 +42,23 @@ import css3 from "@/assets/images/css3.png";
 import cube from "@/assets/images/cube.png";
 import donat from "@/assets/images/donat.png";
 import figma from "@/assets/images/figma.png";
-import gitlab from "@/assets/images/gitlab-1.png";
+import gitlab from "@/assets/images/gitlab.png";
 import gym from "@/assets/images/gym.png";
-import headphone2 from "@/assets/images/headphone2.png";
+import headphone2 from "@/assets/images/headphone.png";
 import heart from "@/assets/images/heart.png";
 import money from "@/assets/images/money.png";
 import pill from "@/assets/images/pill.png";
 import react from "@/assets/images/react.png";
 import vue from "@/assets/images/vue.png";
-import vscode from "@/assets/images/vscode.png";
 import laptop from "@/assets/images/laptop.png";
+import eth from "@/assets/images/eth.png";
+import hash from "@/assets/images/hash.png";
+import html from "@/assets/images/html.png";
+import music from "@/assets/images/music.png";
+import notify from "@/assets/images/notify.png";
+import phone from "@/assets/images/phone.png";
+import tea from "@/assets/images/tea.png";
+import at from "@/assets/images/at.png";
 
 import type { RandomPosition, ParallaxData } from "./parallax.model";
 
@@ -58,6 +66,14 @@ const wrapper = ref<HTMLDivElement>();
 
 const createdGallery = computed((): string[] => {
   const arr = [];
+  arr.push(at);
+  arr.push(eth);
+  arr.push(hash);
+  arr.push(html);
+  arr.push(music);
+  arr.push(notify);
+  arr.push(phone);
+  arr.push(tea);
   arr.push(angleBrackets);
   arr.push(basketball);
   arr.push(camera);
@@ -74,7 +90,6 @@ const createdGallery = computed((): string[] => {
   arr.push(gitlab);
   arr.push(react);
   arr.push(vue);
-  arr.push(vscode);
   arr.push(laptop);
   return arr;
 });
@@ -163,7 +178,7 @@ const generateRandomImageWidth = (): string => {
   )}px`;
 };
 const generateRandomStrength = (): number => {
-  const minValue = 2;
+  const minValue = 10;
   const maxValue = 20;
   return Math.floor(Math.random() * (maxValue - minValue + 1) + minValue);
 };

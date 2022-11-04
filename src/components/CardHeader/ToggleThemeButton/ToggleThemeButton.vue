@@ -8,8 +8,8 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { useTheme } from "vuetify";
-import sun from "@/assets/images/sun.png";
-import moon from "@/assets/images/moon.png";
+import sun from "@/assets/sun.png";
+import moon from "@/assets/moon.png";
 
 const theme = useTheme();
 

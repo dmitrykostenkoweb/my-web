@@ -35,7 +35,7 @@
 import { computed } from "vue";
 import { useDisplay } from "vuetify";
 import type { PreparedLinkData } from "@/model";
-import chat from "@/assets/images/chat.png";
+import chat from "@/assets/chat.png";
 
 const { mdAndUp } = useDisplay();
 

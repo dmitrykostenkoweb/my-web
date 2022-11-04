@@ -34,7 +34,7 @@ import { computed } from "vue";
 import { useDisplay } from "vuetify";
 import AnimationItem from "@/components/common/AnimationItem.vue";
 import type { PreparedLinkData } from "@/model";
-import mail from "@/assets/images/mail.png";
+import mail from "@/assets/mail.png";
 
 const { smAndUp, mdAndUp } = useDisplay();
 

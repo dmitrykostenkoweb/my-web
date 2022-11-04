@@ -5,7 +5,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import donatBig from "@/assets/images/donatBig.png";
+import donatBig from "@/assets/donatBig.png";
 import { computed } from "vue";
 import { useTheme } from "vuetify";
 
@@ -37,6 +37,7 @@ const generateBackgroundThemeColor = computed((): string =>
     right: -5%;
     bottom: -5%;
     filter: blur(2px);
+    width: 250px;
   }
 }
 </style>
