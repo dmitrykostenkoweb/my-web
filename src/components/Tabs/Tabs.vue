@@ -5,7 +5,7 @@
         <slot name="ABOUT" />
       </v-window-item>
 
-      <v-window-item value="CONTACT">
+      <v-window-item :value="TabValues.CONTACT">
         <slot name="CONTACT" />
       </v-window-item>
     </v-window>

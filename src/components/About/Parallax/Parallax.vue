@@ -39,7 +39,6 @@ import basketball from "@/assets/images/basketball.png";
 import camera from "@/assets/images/camera.png";
 import colour from "@/assets/images/colour.png";
 import css3 from "@/assets/images/css3.png";
-import cube from "@/assets/images/cube.png";
 import donat from "@/assets/images/donat.png";
 import figma from "@/assets/images/figma.png";
 import gitlab from "@/assets/images/gitlab.png";
@@ -79,7 +78,6 @@ const createdGallery = computed((): string[] => {
   arr.push(camera);
   arr.push(colour);
   arr.push(css3);
-  arr.push(cube);
   arr.push(donat);
   arr.push(figma);
   arr.push(gym);

@@ -62,7 +62,7 @@ const generateWidth = computed(
 <style lang="scss" scoped>
 .main-card {
   width: v-bind(generateWidth);
-  min-height: 800px;
+  min-height: 600px;
 
   background: #ffffff33;
   border-radius: 16px;

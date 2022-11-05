@@ -1,21 +1,17 @@
 <template>
   <v-app-bar elevation="0" color="transparent" absolute>
-    <v-tabs v-model="tab" elevation="0" color="transparent">
+    <v-tabs v-model="currentTab" elevation="0" color="transparent">
       <v-tab
+        v-for="tab in tabs"
+        :key="tab.id"
+        :to="tab.route"
+        :value="tab.value"
         :style="{
           fontSize: changeFontSize ? '16px' : '12px',
           padding: changeFontSize ? '' : '0',
         }"
-        :value="TabValues.ABOUT"
-        >About
-      </v-tab>
-      <v-tab
-        :value="TabValues.CONTACT"
-        :style="{
-          fontSize: changeFontSize ? '16px' : '12px',
-          padding: changeFontSize ? '' : '0',
-        }"
-        >Contact
+        exact
+        >{{ tab.name }}
       </v-tab>
     </v-tabs>
 
@@ -38,14 +34,19 @@ interface HeaderEmits {
 
 const { xs } = useDisplay();
 
+const currentTab = ref<TabValues>(TabValues.UNKNOWN);
+
+const tabs = computed(() => [
+  { id: 1, name: "About", route: "/about", value: TabValues.ABOUT },
+  { id: 2, name: "Contact", route: "/contact", value: TabValues.CONTACT },
+]);
+
 const changeFontSize = computed((): boolean => !xs.value);
 
 const emit = defineEmits<HeaderEmits>();
 
-const tab = ref<TabValues>(TabValues.ABOUT);
-
 watch(
-  (): TabValues => tab.value,
+  (): TabValues => currentTab.value,
 
   (value): void => emit("tab", value)
 );

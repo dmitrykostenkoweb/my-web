@@ -2,7 +2,8 @@
   <v-app>
     <v-main class="d-flex align-center justify-center h-100 w-100 main">
       <background class="background" />
-      <card @tab="setSelectedTab">
+      <loader v-if="isLoading" />
+      <card v-show="!isLoading" @tab="setSelectedTab">
         <tabs :current-tab="currentTab">
           <template #ABOUT>
             <about />
@@ -17,7 +18,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
+import { useRouter, useRoute } from "vue-router";
+import Loader from "@/components/Loader";
 import Contact from "@/components/Contact";
 import About from "@/components/About";
 import Tabs from "@/components/Tabs";
@@ -26,11 +29,29 @@ import Background from "@/components/Background";
 
 import { TabValues } from "@/components/CardHeader/CardHeader.model";
 
+const router = useRouter();
+const route = useRoute();
+
 const currentTab = ref<TabValues>(TabValues.ABOUT);
+const isLoading = ref<boolean>(false);
 
 const setSelectedTab = (payload: TabValues): void => {
   currentTab.value = payload;
 };
+
+const showSpinner = (): void => {
+  isLoading.value = true;
+  setTimeout(() => {
+    isLoading.value = false;
+    routerProvider();
+  }, 1000);
+};
+
+const routerProvider = (): void => {
+  if (route.path === "/") router.push("/about");
+};
+
+onMounted((): void => showSpinner());
 </script>
 <style lang="scss" scoped>
 .main {
