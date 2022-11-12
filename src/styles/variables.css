@@ -9,5 +9,6 @@
     --blue: #180a89;
     --violet: #6633cc;
     --pink: #ca4fb6;
+    --pink-transparent: rgba(202, 79, 182, 0.5);
     --yellow: #ffcc66
 }

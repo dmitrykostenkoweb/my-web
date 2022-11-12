@@ -8,9 +8,4 @@ import "./styles/main.css";
 
 loadFonts();
 
-createApp(App)
-  .use(router)
-  .use(vuetify)
-  .use(VueKinesis)
-  .use(CursorFx)
-  .mount("#app");
+createApp(App).use(router).use(vuetify).use(VueKinesis).mount("#app");

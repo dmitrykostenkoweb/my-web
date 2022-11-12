@@ -14,6 +14,7 @@
         </tabs>
       </card>
     </v-main>
+    <help-ukraine v-if="!isLoading" :is-open="isHelpUkraine" />
   </v-app>
 </template>
 
@@ -26,6 +27,7 @@ import About from "@/components/About";
 import Tabs from "@/components/Tabs";
 import Card from "@/components/Card";
 import Background from "@/components/Background";
+import HelpUkraine from "@/components/HelpUkraine/HelpUkraine.vue";
 
 import { TabValues } from "@/components/CardHeader/CardHeader.model";
 
@@ -34,6 +36,7 @@ const route = useRoute();
 
 const currentTab = ref<TabValues>(TabValues.ABOUT);
 const isLoading = ref<boolean>(false);
+const isHelpUkraine = ref<boolean>(false);
 
 const setSelectedTab = (payload: TabValues): void => {
   currentTab.value = payload;
@@ -41,14 +44,21 @@ const setSelectedTab = (payload: TabValues): void => {
 
 const showSpinner = (): void => {
   isLoading.value = true;
-  setTimeout(() => {
+
+  setTimeout(async (): Promise<void> => {
     isLoading.value = false;
-    routerProvider();
+
+    await routerProvider();
+    showHelpUkraine();
   }, 1000);
 };
 
-const routerProvider = (): void => {
-  if (route.path === "/") router.push("/about");
+const showHelpUkraine = (): void => {
+  setTimeout(() => (isHelpUkraine.value = true), 2000);
+};
+
+const routerProvider = async (): Promise<void> => {
+  if (route.path === "/") await router.push("/about");
 };
 
 onMounted((): void => showSpinner());

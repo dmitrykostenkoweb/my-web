@@ -1,15 +1,17 @@
 import { createRouter, createWebHistory } from "vue-router";
+import About from "@/components/About";
+import Contact from "@/components/Contact";
 
 const children = [
   {
     path: "/about",
     name: "About",
-    component: () => import("@/components/About"),
+    component: About,
   },
   {
     path: "/contact",
     name: "Contact",
-    component: () => import("@/components/Contact"),
+    component: Contact,
   },
 ];
 
