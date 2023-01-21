@@ -14,7 +14,7 @@
         </tabs>
       </card>
     </v-main>
-    <help-ukraine v-if="!isLoading" :is-open="isHelpUkraine" />
+    <!--    <help-ukraine v-if="!isLoading" :is-open="isHelpUkraine" />-->
   </v-app>
 </template>
 
@@ -27,7 +27,7 @@ import About from "@/components/About";
 import Tabs from "@/components/Tabs";
 import Card from "@/components/Card";
 import Background from "@/components/Background";
-import HelpUkraine from "@/components/HelpUkraine/HelpUkraine.vue";
+// import HelpUkraine from "@/components/HelpUkraine/HelpUkraine.vue";
 
 import { TabValues } from "@/components/CardHeader/CardHeader.model";
 
